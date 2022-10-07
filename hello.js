@@ -41,6 +41,7 @@ async function main() {
         console.log(aggGroup); //aggGroup is the grouped result after the pipeline
     }
 
+    //insertMany can insert multiple documents at once.
     await userCreds.insertMany([
         {
             "userID" : "daphne",
@@ -80,12 +81,17 @@ async function main() {
         }
     ]);
 
+    //this part, I am learning how to hash passwords to store in a safer manner
     const testPassword = "Pass_Word1234";
-    const saltRounds = 10;
+    const saltRounds = 10; //higher number of rounds, stronger the hash
 
+    //generates salt with the cost being saltRounds, outputs to variable name salt
     bcrypt.genSalt(saltRounds, function(saltError, salt) {
+        //generates the hash from the salt generated above
         bcrypt.hash(testPassword, salt, function(hashError, hash){
             console.log(hash);
+
+            //here it compares the input password with the hashed password
             bcrypt.compare(testPassword, hash, function(err, result) {
                 console.log(`${result}: does match`);
             });
