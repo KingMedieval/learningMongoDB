@@ -1,0 +1,8 @@
+{
+  "name": "mongoTest",
+  "version": "1.0.0",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "mongodb": "^4.10.0"
+  }
+}
